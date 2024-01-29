@@ -28,7 +28,7 @@ const course = new mongoose.Schema({
             ref: "ratingsAndReviews"
         }
     ],
-    students: [
+    studentEnrolled: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"
@@ -45,9 +45,14 @@ const course = new mongoose.Schema({
         required: true,
     },
 
-    tags: {
+    category: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "tags"
+        ref: "category"
+    }
+    ,
+    tags: {
+        type: String,
+        required: true
     }
 
 })

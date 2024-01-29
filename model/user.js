@@ -22,16 +22,32 @@ const user = new mongoose.Schema({
         type: String,
         required: true,
     },
+    confirmPassword: {
+        type: String,
+        required: true,
+    },
+    role: {
+        type: String,
+        enum: ["student", "instructor", "admin"],
+        required: true
+    },
     image: {
         type: String,
         required: true,
     },
+
     courses: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "course"
         }
     ],
+    token: {
+        type: String,
+    },
+    resetPasswordExpire: {
+        type: Date,
+    },
     courseProgress: [
         {
             type: mongoose.Schema.Types.ObjectId,
