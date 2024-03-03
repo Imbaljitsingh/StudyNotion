@@ -63,4 +63,4 @@ const user = new mongoose.Schema({
 })
 
 //exporting our user schema
-modules.exports = mongoose.model('user', user);
+module.exports = mongoose.model('user', user);

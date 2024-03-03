@@ -6,6 +6,9 @@ const router = express.Router();
 //OTP Generator
 const otpGenerator = require('otp-generator')
 
+//Import Env variable
+require('dotenv').config();
+
 //importing model
 const generateMail = require("../utils/generateMail");
 const user = require("../model/user");
@@ -209,7 +212,7 @@ exports.login = async (req, res) => {
         //match the password and generate password
         if (await bcrypt.compare(password, user.password)) {
             //genrate JWT tokens params 1.payload , 2.jwt secret, 3. options (optional)
-            let token = jwt.sign(payload, "johndoe99", { expiresIn: '2h' });
+            let token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
             user.token = token;
 
             //generate cookie

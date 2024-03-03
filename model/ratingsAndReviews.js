@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 //define ratingsAndReviews schema 
 
 const ratingsAndReviews = new mongoose.Schema({
-    name: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
@@ -14,6 +14,10 @@ const ratingsAndReviews = new mongoose.Schema({
     review: {
         type: String,
         required: true
+    },
+    courses: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "course"
     }
 })
 

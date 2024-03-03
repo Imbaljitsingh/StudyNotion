@@ -20,4 +20,4 @@ const profile = new mongoose.Schema({
 
 //exporting profile model
 
-modules.export = mongoose.model('profile', profile);
+module.export = mongoose.model('profile', profile);

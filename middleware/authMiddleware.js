@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtokens')
+const jwt = require('jsonwebtoken')
 
 //auth 
 

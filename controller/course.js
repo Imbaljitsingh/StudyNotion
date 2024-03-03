@@ -94,9 +94,7 @@ exports.createCourse = async (req, res) => {
     }
 }
 
-
 //get all course
-
 exports.getAllCourses = async (req, res) => {
     try {
 
@@ -115,3 +113,50 @@ exports.getAllCourses = async (req, res) => {
         })
     }
 }
+
+//get course details
+exports.getCourseDetails = async (req, res) => {
+    try {
+
+        //get id
+        const { courseId } = req.body;
+        //find course details
+        const courseDetails = await course.find(
+            { _id: courseId }
+        ).populate({
+            path: "instructor",
+            populate: {
+                path: "additionalDetails",
+            }
+        }).populate("category")
+            .populate("ratingAndReviews")
+            .populate({
+                path: "courseContent",
+                populate: {
+                    path: "subSection"
+                }
+            })
+            .exec();
+
+        //validation 
+        if (!courseDetails) {
+            return res.status(400).json({
+                success: false,
+                message: `Something went wrong while finding the course ${courseId}`
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: `course details fetched successfully`
+        })
+
+
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: `Something went wrong while finding the course.`
+        })
+    }
+}
+

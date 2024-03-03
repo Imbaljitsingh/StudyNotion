@@ -96,7 +96,7 @@ exports.verifySignature = async (req, res) => {
     try {
 
         //webtoken 
-        const webhook = "12345"; //server secret
+        const webhook = "johnDoe123"; //server secret
         const signature = req.headers["x-razorpay-signature"]; //razorpay signature (encrypted)
 
         const shasum = crypto.createHmac("sha256", webhook);
